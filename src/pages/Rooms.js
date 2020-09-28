@@ -1,9 +1,8 @@
 import React from 'react'
+import Hero from "../components/Hero"
 
 export default function Rooms() {
     return (
-        <div>
-            Hello from room page
-        </div>
+        <Hero hero="roomsHero" />
     )
 }
