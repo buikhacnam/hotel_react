@@ -29,7 +29,7 @@ class RoomProvider extends Component {
 
     formatData(items) {
         let tempItems = items.map(item => {
-            let id = item.id;
+            let id = item.sys.id;
             let images = item.fields.images.map(image => image.fields.file.url);
             let room = {...item.fields, id, images};
             return room;
@@ -37,10 +37,18 @@ class RoomProvider extends Component {
         return tempItems;
     }
 
+    getRoom =(slug) => {
+        let tempRooms = [...this.state.rooms];
+        const room = tempRooms.find(room => room.slug === slug);
+        return room;
+    }
 
     render() {
         return (
-            <RoomContext.Provider value={{...this.state}}>
+            <RoomContext.Provider value={{
+                ...this.state,
+                getRoom: this.getRoom
+            }}>
                 {this.props.children}
             </RoomContext.Provider>
         )
